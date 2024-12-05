@@ -1,3 +1,5 @@
+# generate parentheses
+
 def generateParenthesis(self, n: int) -> List[str]:
     def dfs(left, right, s):
         # Base case: if the current string length is 2 * n, add to result

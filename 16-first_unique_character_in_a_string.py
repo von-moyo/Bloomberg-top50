@@ -1,3 +1,5 @@
+# first unique character in a string
+
 from collections import defaultdict
 
 class Solution:

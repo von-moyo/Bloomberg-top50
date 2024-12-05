@@ -1,3 +1,4 @@
+# minimum number of removals to make mountain array
 class Solution:
     def minimumRemovals(self, nums: List[int]) -> int:
         n = len(nums)

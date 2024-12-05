@@ -1,0 +1,40 @@
+Ad Click Aggregator
+
+- Requirements:
+    - Functional Requirements:
+        - Track and aggregate clicks for online advertisements in real time.
+        - Provide metrics such as total clicks, unique clicks, and click-through rates (CTR).
+        - Support querying aggregated data by time range, campaign, or user demographic.
+
+    - Non-Functional Requirements:
+        - Scalability: Handle billions of clicks per day.
+        - Low Latency: Real-time aggregation and query responses.
+        - Fault Tolerance: Ensure no data is lost.
+
+- Core Entities:
+    - Ad: ad_id, campaign_id, content.
+    - Click: click_id, user_id, ad_id, timestamp.
+    - Campaign: campaign_id, name, target_demographic.
+
+- API:
+    - POST /clicks: Log a click.
+        - Request: { "ad_id": "123", "user_id": "456", "timestamp": "2024-12-02T10:00:00Z" }
+    - GET /metrics: Fetch aggregated click data.
+        - Request: { "campaign_id": "789", "start_time": "2024-12-01T00:00:00Z", "end_time": "2024-12-02T00:00:00Z" }
+        - Response: { "total_clicks": 1000, "unique_clicks": 800, "ctr": 0.05 }
+
+
+- High-Level Diagram:
+    - Ingestion Layer: Receives click data from clients.
+    - Stream Processor: Aggregates data in real time.
+    - Database: Stores aggregated and raw click data.
+    - Analytics API: Serves query requests
+
+
+- Deep Dive:
+    - Data Ingestion: Use Kafka or AWS Kinesis for high-throughput ingestion.
+    - Aggregation: Leverage a stream processing engine like Apache Flink or Spark Streaming.
+    - Storage:
+        - Use Redis or DynamoDB for real-time counters.
+        - Store raw data in a data lake (e.g., S3) for offline analytics.
+    - Optimization: Pre-aggregate data by campaign or time range to speed up queries.

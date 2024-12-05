@@ -1,0 +1,46 @@
+Whatsapp
+
+- Requirements:
+    - Functional Requirements:
+        - Real-time messaging (text, media, calls).
+        - Group chats.
+        - End-to-end encryption.
+
+    - Non-Functional Requirements:
+        - High availability for billions of users.
+        - Low latency for message delivery.
+        - Scalability for global usage.
+
+- Core Entities:
+    - User: user_id, contacts, status.
+    - Message: message_id, content, sender_id, receiver_id, timestamp, status.
+    - Chat: chat_id, participants, messages.
+
+- API:
+    - POST /sendMessage: Send a message.
+    - GET /fetchMessages/:chat_id: Retrieve chat history.
+    - POST /createGroup: Create a new group chat.
+
+
+- High-Level Diagram:
+    - Message Queue:
+        - Reliable delivery of messages (Kafka/RabbitMQ).
+    - Messaging Service:
+        - Processes sending/receiving messages.
+        - Encryption via public/private key pairs.
+    - Group Management Service:
+        - Handles group chats, members, and permissions.
+    - Media Service:
+        - Stores and retrieves media files (e.g., images, videos).
+    - Push Notification Service:
+        - Sends notifications for new messages.
+    - User Presence Service:
+        - Tracks online/offline status.
+    - Database:
+        - Message storage (NoSQL like Cassandra).
+
+
+- Deep Dive:
+    - Encryption: Use public/private key pairs for end-to-end encryption.
+    - Delivery Confirmation: Implement statuses like sent, delivered, and read.
+    - Scalability: Use shard-based databases for storing messages.

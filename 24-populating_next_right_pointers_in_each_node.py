@@ -1,3 +1,5 @@
+# populating next right pointers in each node
+
 class Node:
     def __init__(self, val=0, left=None, right=None, next=None):
         self.val = val

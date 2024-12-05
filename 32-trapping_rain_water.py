@@ -1,3 +1,5 @@
+# trapping rain
+
 # two-pointer technique. This approach is efficient because it only
 # requires a single pass through the array, resulting in O(n) time
 # complexity and O(1) extra space complexity.

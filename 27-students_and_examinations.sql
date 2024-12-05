@@ -1,3 +1,4 @@
+-- students and examinations
 SELECT 
     s.student_id, 
     s.student_name, 

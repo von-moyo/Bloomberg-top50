@@ -1,0 +1,39 @@
+Top K stocks
+
+- Requirements:
+    - Functional Requirements:
+        - Fetch the top K stocks based on traded volume in the last 24 hours.
+        - Support queries for different values of K.
+        - Data should refresh in real time or at regular intervals.
+
+    - Non-Functional Requirements:
+        - Scalability: Handle data for millions of stocks with continuous updates.
+        - Latency: Low response time for top-K queries.
+        - Availability: System should be highly available.
+
+- Core Entities:
+ - Stock
+ - Volume Tracker
+ - Priority Queue
+
+- API
+ - POST/stock-data
+    Request: { "stock_id": "AAPL", "traded_volume": 100, "price": 150, "timestamp": "2024-12-02T12:00:00Z" }
+ - GET/top-k
+    Request: { "k": 10 }
+    Response: [{"stock_id": "AAPL", "traded_volume": 1000}, ...]
+    
+
+
+- High-Level Diagram
+    - Data Ingestion Layer: Collects real-time trading data.
+    - Aggregator: Computes total traded volume for each stock.
+    - Storage: Stores aggregated volumes in a database.
+    - API Layer: Serves top-K queries using precomputed data.
+
+
+- Deep Dive
+    - Storage: Use a high-throughput NoSQL database like Cassandra for fast writes and reads.
+    - Computation: Use a priority queue (min-heap) for efficiently maintaining the top K stocks.
+    - Real-Time Updates: Use a streaming platform like Apache Kafka for real-time ingestion and aggregation.
+    - Optimization: Employ time-based partitioning to limit data scanning to 24 hours.

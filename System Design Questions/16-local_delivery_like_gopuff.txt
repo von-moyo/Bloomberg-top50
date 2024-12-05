@@ -1,0 +1,40 @@
+Local Delivery Like Gopuff
+
+- Requirements:
+    - Functional Requirements:
+        - Allow users to order items for delivery.
+        - Real-time tracking of delivery.
+
+    - Non-Functional Requirements:
+        - Scalability for handling peak orders.
+        - Reliability for order delivery.
+
+- Core Entities:
+    - Order: order_id, items, status, delivery_time.
+    - User: user_id, address.
+
+- API:
+    - POST /placeOrder: Place a delivery order.
+    - GET /orderStatus/:order_id: Track order status.
+
+
+- High-Level Diagram:
+    - Order Management Service:
+        - Processes orders and tracks status.
+    - Inventory Service:
+        - Tracks stock availability at warehouses.
+    - Delivery Assignment Service:
+        - Matches orders to delivery agents using optimization algorithms.
+    - Tracking Service:
+        - Updates users with real-time delivery location.
+    - Payment Gateway:
+        - Processes payments securely.
+    - Notification Service:
+        - Sends order and delivery updates.
+    - Database:
+        - Stores order and delivery data.
+
+
+- Deep Dive:
+    - Tracking: Use GPS APIs for live tracking.
+    - Inventory Management: Sync items with warehouses.

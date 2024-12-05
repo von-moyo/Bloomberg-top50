@@ -1,3 +1,5 @@
+# length of longest substring
+
 def lengthOfLongestSubstring(s: str) -> int:
     # Initialize variables
     char_map = {}  # To store the most recent index of each character

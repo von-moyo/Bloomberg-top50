@@ -1,0 +1,38 @@
+Robinhood
+
+- Requirements:
+    - Functional Requirements:
+        - Real-time stock trading.
+        - Display stock prices and trends.
+        - Portfolio tracking.
+
+    - Non-Functional Requirements:
+        - High availability for trading.
+        - Low latency for price updates.
+
+- Core Entities:
+    - User: user_id, portfolio.
+    - Stock: ticker, price, volume.
+
+- API:
+    - POST /buyStock: Execute a buy order.
+    - POST /sellStock: Execute a sell order.
+    - GET /portfolio/:user_id: Fetch user portfolio.
+
+
+- High-Level Diagram:
+    - Trading Engine:
+        - Matches buy and sell orders in real time.
+    - Market Data Service:
+        - Provides real-time stock price updates.
+    - Portfolio Management Service:
+        - Tracks user investments and calculates metrics like P&L.
+    - Notification Service:
+        - Alerts users about stock price movements.
+    - Database:
+        - Stores user data, trades, and financial records.
+    - Payment Gateway:
+        - Processes deposits and withdrawals.
+
+
+- Deep Dive:

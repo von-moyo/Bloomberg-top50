@@ -1,3 +1,5 @@
+// create hello world function
+
 /**
  * @return {Function}
  */

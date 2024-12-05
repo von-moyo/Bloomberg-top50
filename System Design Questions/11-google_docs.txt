@@ -1,0 +1,51 @@
+Google Docs
+
+- Requirements:
+    - Functional Requirements:
+        - Real-time collaborative document editing.
+        - Version control and document history.
+        - User authentication and access control (view/edit/share).
+        - Offline support.
+    - Non-Functional Requirements:
+        - Low latency for real-time updates.
+        - Scalability to handle millions of simultaneous users.
+        - High availability to prevent downtime.
+
+- Core Entities:
+    - Document: document_id, title, content, version_history.
+    - User: user_id, name, permissions.
+    - Session: Tracks real-time editing sessions.
+
+- API
+    - POST /createDocument: Creates a new document.
+    - GET /document/:id: Fetches the document content.
+    - PUT /document/:id: Updates the document collaboratively.
+    - GET /document/:id/history: Fetches version history.
+
+
+- High-Level Diagram:
+    - Frontend Editor:
+        - Rich text editor with support for collaborative updates.
+        - Real-time syncing via WebSockets.
+    - Collaboration Service:
+        - Handles real-time changes using Operational Transforms (OT) or Conflict-Free Replicated Data Types (CRDT).
+        - Ensures consistency and merges concurrent edits.
+    - Document Storage Service:
+        - Stores document content and metadata (e.g., version history).
+        - Backed by scalable databases (e.g., Google Cloud Storage, Bigtable).
+    - Sync Service:
+        - Syncs local changes to the cloud for offline support.
+    - Access Control Service:
+        - Handles permissions (view, edit, share).
+    - Version Control Service:
+        - Stores document history for undo/redo and recovery.
+    - Notification Service:
+        - Notifies collaborators of changes.
+
+
+
+
+- Deep Dives:
+    - Collaboration: Use WebSockets for real-time updates. Operational Transformations (OT) or CRDTs ensure consistency.
+    - Version Control: Store document deltas for history tracking.
+    - Offline Support: Cache changes locally and sync when back online.

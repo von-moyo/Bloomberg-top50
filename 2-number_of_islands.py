@@ -1,3 +1,4 @@
+# number of islands
 def num_islands(self, grid: List[List[str]]) -> int:
     if not grid:
         return 0

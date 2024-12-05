@@ -1,3 +1,5 @@
+# minimum total distance travelled 
+
 from itertools import accumulate
 from math import inf
 

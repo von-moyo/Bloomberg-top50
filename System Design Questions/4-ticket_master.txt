@@ -1,0 +1,46 @@
+Ticket Master
+
+- Requirements:
+    - Functional Requirements:
+        - Book tickets
+        - View an Event
+        - Search for events
+
+    - Non-Functional Requirements:
+        - Strong Consistency for booking tickets & High availability for search and viewing events
+        - read >> writes
+        - Scalability to handle surges from popular events
+
+    - Out of Scope:
+        - Fault Tolerance
+
+- Core Entities:
+    - Events
+    - Users
+    - bookings
+    - tickets
+    - Performers
+    - Venues
+
+- API:
+    - GET /events/:eventId -> Event & Venue & Performer & Ticket[]
+        - tickets are to render the seat map on the Client
+    - GET /events/search?keyword={keyword}&start={start_date}&end={end_date}&pageSize={page_size}&page={page_number} -> Event[]
+    - POST /bookings/:eventId -> bookingId
+        {
+        "ticketIds": string[], 
+        "paymentDetails": ...
+        }
+- High-Level Diagram:
+    - API gateway
+    - Search Service
+    - Event Service
+    - Booking Service
+    - Payment Gateway
+    - Database
+
+
+- Deep Dive:
+    - Database Design: Use a relational database for strong consistency.
+    - Inventory Locking: Implement distributed locking to prevent overselling (e.g., using Redis or Zookeeper).
+    - Scalability: Use read replicas for event browsing and sharded databases for ticket storage.

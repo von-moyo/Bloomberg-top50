@@ -1,0 +1,32 @@
+Tinder
+
+- Requirements:
+    - Functional Requirements:
+        - Allow users to swipe on profiles.
+        - Match users when both swipe right.
+        - Support messaging between matched users.
+
+    - Non-Functional Requirements:
+        - Scalability: Handle millions of users and swipes.
+        - Low Latency: Real-time matching and messaging.
+
+- Core Entities:
+    - User: user_id, profile, location, preferences.
+    - Match: match_id, user1_id, user2_id, status.
+
+- API:
+    - GET /matches: Get a list of matches.
+    - POST /swipe: Swipe on a profile.
+        - Request: { "user_id": "123", "target_user_id": "456", "direction": "right" }
+
+
+- High-Level Diagram:
+    - User Service: Manages user profiles and preferences.
+    - Matching Engine: Tracks swipes and generates matches.
+    - Messaging Service: Supports chat between users.
+
+
+- Deep Dive:
+    - Matching: Use Redis to track swipes for real-time match computation.
+    - Messaging: Use WebSocket for real-time chat.
+    - Optimization: Use geospatial indexing to filter profiles by proximity.

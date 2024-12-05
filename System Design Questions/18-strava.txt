@@ -1,0 +1,35 @@
+Strava
+
+- Requirements:
+    - Functional Requirements:
+        - Track activities like running or cycling.
+        - Analyze performance metrics.
+
+    - Non-Functional Requirements:
+        - High availability for activity uploads.
+        - Scalability for millions of users.
+
+- Core Entities:
+    - Activity: activity_id, user_id, type, distance. 
+    - User: user_id, name, activities
+
+- API:
+    - POST /uploadActivity: Upload activity data.
+    - GET /activities/:user_id: Fetch user activities.
+
+- High-Level Diagram:
+    - Activity Tracking Service:
+        - Processes GPS data to record activities.
+    - Performance Analytics Service:
+        - Calculates metrics like pace, distance, and elevation.
+    - Leaderboard Service:
+        - Manages rankings for activities like races.
+    - Social Network Service:
+        - Allows users to follow others and comment on activities.
+    - Storage:
+        - Stores activity and user data.
+    - Notification Service:
+        - Updates users about achievements or challenges.
+
+
+- Deep Dive:

@@ -1,0 +1,16 @@
+Online Auction
+
+- Requirements:
+    - Functional Requirements:
+
+    - Non-Functional Requirements:
+
+- Core Entities:
+
+- API
+
+
+- High-Level Diagram
+
+
+- Deep Dive

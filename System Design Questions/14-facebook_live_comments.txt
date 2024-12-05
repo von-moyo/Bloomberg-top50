@@ -1,0 +1,36 @@
+- Requirements:
+    - Functional Requirements:
+        - Real-time commenting on live videos.
+        - Display comments in chronological order.
+
+    - Non-Functional Requirements:
+        - Low latency for real-time updates.
+        - Scalability for millions of viewers.
+
+- Core Entities:
+    - LiveStream: stream_id, creator_id, start_time.
+    - Comment: comment_id, stream_id, content, user_id, timestamp.
+
+- API:
+    - POST /addComment: Add a comment to a live stream.
+    - GET /fetchComments/:stream_id: Fetch live comments.
+
+
+- High-Level Diagram:
+    - Comment Ingestion Service:
+        - Handles incoming comments and validates them.
+    - Real-Time Delivery Service:
+        - Streams comments to viewers using WebSockets or Server-Sent Events (SSE).
+    - Streaming Service:
+        - Manages live video delivery.
+    - Comment Storage:
+        - Stores live comments for later replay.
+    - Rate-Limiting Service:
+        - Prevents spam by limiting comment frequency.
+    - CDN:
+        - Delivers live video to viewers worldwide.
+
+
+- Deep Dive:
+    - Streaming: Use CDN for live video delivery.
+    - Comments: Push new comments to viewers using WebSockets.

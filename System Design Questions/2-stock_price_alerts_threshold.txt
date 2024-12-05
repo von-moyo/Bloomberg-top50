@@ -1,0 +1,38 @@
+Stock Price Alerts
+
+- Requirements:
+    - Functional Requirements:
+        - Allow Users to set price thresholds (greater than, less than, or equal to)
+        - Notify users via email, SMS, or app when the condition is met.
+        - Support multiple thresholds per User/Stock
+    - Non-Functional Requirements:
+        - Low Latency: Quick notification delivery.
+        - Scalability: Handle millions of users and stocks.
+        - Accuracy: Ensure timely triggers with minimal delays.
+
+
+- Core Entities:
+    - User: user_id, contact_info.
+    - Stock: stock_id, price, timestamp.
+    - Alert: alert_id, user_id, stock_id, threshold, direction (>, <, =).
+
+- API:
+    - POST /alerts: Create a new alert.
+        - Request: { "user_id": "123", "stock_id": "AAPL", "threshold": 150, "direction": ">" }
+        - Response: { "alert_id": "abc123" }
+    - GET /alerts/{user_id}: Get active alerts for a user.
+        - Response: [{"alert_id": "abc123", "stock_id": "AAPL", "threshold": 150, "direction": ">"}]
+
+
+- High-Level Diagram:
+    - Stock Data Stream: Ingest real-time price updates from a market data feed.
+    - Alert Processor: Compare stock prices with user thresholds.
+    - Notification System: Send alerts via chosen communication channel.
+    - Database: Store users, alerts, and stock metadata.
+
+
+- Deep Dive:
+    - Data Ingestion: Use a streaming platform like Kafka to receive stock prices.
+    - Alert Matching: Use an in-memory database (e.g., Redis) to store active alerts for fast matching.
+    - Notification: Integrate with Twilio (SMS), SES (email), or FCM (push notifications).
+    - Optimization: Partition alerts by stock for efficient processing.

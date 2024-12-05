@@ -1,0 +1,36 @@
+Yelp
+
+- Requirements:
+    - Functional Requirements:
+        - Search for businesses by location, category, or name.
+        - Post and read reviews.
+
+    - Non-Functional Requirements:
+        - Scalability to handle global searches.
+        - Low latency for search queries.
+
+- Core Entities:
+    - Business: business_id, name, location, rating.
+    - Review: review_id, business_id, user_id, content.
+
+- API:
+    - GET /searchBusinesses: Search for businesses.
+    - POST /addReview: Add a review for a business.
+
+
+- High-Level Diagram:
+    - Search Indexing Service:
+        - Builds indexes for fast business lookups.
+    - Search Query Service:
+        - Retrieves search results for users.
+    - Review Management Service:
+        - Handles review creation, editing, and ranking.
+    - Recommendation Engine:
+        - Suggests businesses based on user preferences.
+    - Mapping Service:
+        - Displays business locations on maps (e.g., Google Maps API).
+    - Database:
+        - Stores business and review data.
+
+
+- Deep Dive

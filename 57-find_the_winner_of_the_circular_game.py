@@ -1,3 +1,6 @@
+# find the winner of the circular game
+
+import deque
 class Solution:
     def findTheWinner(self, n: int, k: int) -> int:
         queue = deque()
