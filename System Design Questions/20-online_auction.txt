@@ -1,0 +1,104 @@
+Online Auction
+
+- Requirements:
+    - Functional Requirements:
+        - Users should be able to:
+            - Register, log in, and manage their profiles.
+            - Create auctions for items.
+            - Browse, search, and filter auctions.
+            - Place bids on active auctions.
+            - Receive notifications for bid updates (outbids, auction won/lost).
+            - View auction history (past bids, won/lost items).
+        - Support different types of auctions:
+            - English Auctions (standard bidding).
+            - Dutch Auctions (price decreases over time).
+            - Reserve Price Auctions (minimum price must be met).
+        - Handle auction time limits:
+            - Automatically close auctions after their expiry time.
+        - Payment processing:
+            - Securely handle payments after auction completion.
+        
+
+    - Non-Functional Requirements:
+
+- Core Entities:
+    User:
+
+user_id, username, email, password_hash, account_balance, bidding_history
+Item:
+
+item_id, name, description, starting_price, reserve_price, auction_type
+Auction:
+
+auction_id, item_id, seller_id, start_time, end_time, current_highest_bid, bid_history
+Bid:
+
+bid_id, auction_id, bidder_id, bid_amount, timestamp
+Payment:
+
+payment_id, auction_id, buyer_id, seller_id, amount, status
+
+
+- API:
+    - User APIs:
+        - POST /register: Register a new user.
+        - POST /login: Authenticate a user.
+        - GET /users/{user_id}: Fetch user profile and bid history.
+    - Auction APIs:
+        - POST /auctions: Create a new auction.
+        - GET /auctions: List active auctions with filters (type, price, category).
+        - GET /auctions/{auction_id}: Fetch auction details and bid history.
+    - Bid APIs:
+        - POST /auctions/{auction_id}/bids: Place a bid on an auction.
+        - GET /auctions/{auction_id}/bids: View all bids on an auction.
+    - Notification APIs:
+        - GET /notifications: Fetch real-time notifications (outbid, won/lost).
+    - Payment APIs:
+        - POST /payments: Initiate payment after winning an auction.
+
+
+- High-Level Diagram:
+    - Frontend:
+        - Web and mobile interface for user interaction.
+    - Backend Services:
+        - User Service: Handles authentication, profiles.
+        - Auction Service: Manages auctions, item details, bid logic.
+        - Notification Service: Sends real-time updates (via WebSockets or Push Notifications).
+        - Payment Service: Integrates with third-party gateways (e.g., Stripe, PayPal).
+    - Database:
+        - Relational DB (PostgreSQL): Store users, auctions, and bids.
+        - Cache (Redis): Real-time bid leaderboard and frequently accessed auction details.
+    - Message Broker:
+        - Kafka/RabbitMQ: Handle bid events, notifications, and payment processing asynchronously.
+    - Real-Time Updates:
+        - WebSockets for bid updates and auction end notifications.
+
+
+- Deep Dive:
+    Auction Process Workflow:
+Create Auction:
+
+User submits an item to the auction service.
+Auction service validates the item and initializes an auction record in the database.
+Place Bid:
+
+User submits a bid to the auction service.
+Service checks:
+Bid amount > current highest bid.
+Auction still active.
+Updates the current highest bid and bid history.
+Pushes a message to the notification service for real-time updates.
+Close Auction:
+
+Auction service automatically closes the auction after its end time.
+Notifies the highest bidder and the seller.
+Pushes a message to the payment service for processing.
+Real-Time Notifications:
+Use WebSockets to notify users about:
+Outbids.
+Auction won or lost.
+Auction nearing expiry.
+Payment Handling:
+Integrate with a third-party payment gateway.
+Ensure funds are transferred securely between buyer and seller.
+Add escrow logic if needed.

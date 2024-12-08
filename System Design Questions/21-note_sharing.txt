@@ -1,0 +1,42 @@
+Note Sharing
+
+- Requirements:
+    - Functional Requirements:
+        - Ability to share a note with other users with different permission levels
+        - Ability to retrieve all the notes a user has access to
+        - Ability to check the permission a user has on a note
+    - Non-Functional Requirements:
+        - Consistency
+        - No single point of failures
+
+- Core Entities:
+    - User
+    - note
+    - Permission Levels
+
+- API
+    - POST/note(id)?user(id)?permission
+    - GET/user(id)
+    - GET/user_permission/note(id)?user(id)
+
+
+- High-Level Diagram
+    - API gateway
+    - Note Sharing Service
+    - User Service
+    - NotesUser Permission
+    - Note Sharing DB
+
+
+- Deep Dive
+    - Horizontal Scaling:
+        - Deploy multiple backend instances behind a load balancer.
+        - Partition data across databases by user or note ID.
+    - Caching:
+        - Frequently accessed notes and permissions cached in Redis.
+    - Search Indexing:
+        - Incremental indexing to keep search results fresh.
+    - Replication:
+        - Database replication for high availability and disaster recovery.
+    - Rate Limiting:
+        - Prevent abuse of APIs with rate limiting.

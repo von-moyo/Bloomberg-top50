@@ -1,0 +1,33 @@
+Uber
+
+- Requirements:
+    - Functional Requirements:
+        - Allow users to request rides and drivers to accept them.
+        - Match riders and drivers based on location.
+        - Track rides in real time.
+
+    - Non-Functional Requirements:
+        - Low Latency: Near-instant ride matching.
+        - Scalability: Handle millions of concurrent users.
+        - Availability: Always-on system with no downtime.
+
+- Core Entities:
+    - Rider: rider_id, location, destination.
+    - Driver: driver_id, location, status (available, busy).
+    - Ride: ride_id, rider_id, driver_id, status (pending, ongoing, completed).
+
+- API:
+    - POST /request-ride: Rider requests a ride.
+    - GET /ride-status: Get details of an active ride.
+
+
+- High-Level Diagram:
+    - Location Service: Tracks real-time locations of riders and drivers.
+    - Matching Engine: Pairs riders with nearby drivers.
+    - Ride Management: Tracks the status and details of rides.
+
+
+- Deep Dive:
+    - Location Indexing: Use a geospatial database (e.g., PostgreSQL with PostGIS).
+    - Real-Time Communication: Use WebSocket for live updates.
+    - Optimization: Implement surge pricing and route optimization algorithms.

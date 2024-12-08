@@ -1,3 +1,4 @@
+# maximum subarray
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         max_sum = nums[0]  # Initialize max_sum to the first element

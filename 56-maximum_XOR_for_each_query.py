@@ -1,3 +1,5 @@
+# maximum XOR for each query
+
 class Solution:
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
         # Calculate the mask for maximum bit constraint (all bits set to 1 within maximumBit range)

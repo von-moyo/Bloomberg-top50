@@ -1,3 +1,5 @@
+# design hit counter
+
 from collections import deque
 
 class HitCounter:

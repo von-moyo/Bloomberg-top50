@@ -36,6 +36,9 @@ class BrowserHistory:
             self.url = url
             self.prev = None
             self.next = None
+# Insert, Remove, getRandom
+import random
+class RandomizedSet:
 
     def __init__(self):
         # Initialize head and tail of the doubly linked list

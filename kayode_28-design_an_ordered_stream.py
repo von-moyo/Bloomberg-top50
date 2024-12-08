@@ -1,3 +1,4 @@
+# Question: Design Ordered Stream
 class OrderedStream:
     def __init__(self, n: int):
         self.pointer = 1

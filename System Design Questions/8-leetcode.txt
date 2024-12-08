@@ -1,0 +1,33 @@
+Leetcode
+
+- Requirements:
+    - Functional Requirements:
+        - Provide coding problems with varying difficulty.
+        - Allow users to submit and test solutions.
+        - Track user progress and rankings.
+    - Non-Functional Requirements:
+        - Scalability: Handle millions of users and submissions.
+        - Latency: Fast code compilation and execution.
+        - Reliability: Ensure solutions are evaluated accurately.
+
+- Core Entities:
+    - User: user_id, username, rank.
+    - Problem: problem_id, title, difficulty, tags.
+    - Submission: submission_id, user_id, problem_id, status (accepted, wrong).
+
+- API
+    - GET /problems: Fetch a list of problems.
+    - POST /submit: Submit a solution.
+        - Request: { "user_id": "123", "problem_id": "456", "code": "..." }
+
+
+- High-Level Diagram:
+    - Problem Database: Stores coding problems and metadata.
+    - Code Execution Engine: Compiles and executes user submissions.
+    - Leaderboard Service: Tracks and updates rankings.
+
+
+- Deep Dive:
+    - Execution Engine: Use containerized environments (e.g., Docker) to isolate submissions.
+    - Database: Use a relational database for user and problem data.
+    - Optimization: Precompute common statistics like acceptance rates.

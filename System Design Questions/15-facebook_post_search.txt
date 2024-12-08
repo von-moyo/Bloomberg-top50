@@ -1,0 +1,32 @@
+- Requirements:
+    - Functional Requirements:
+        - Search posts by keywords, hashtags, or users.
+        - Return relevant results quickly.
+
+    - Non-Functional Requirements:
+        - Low latency for search queries.
+        - Scalability for billions of posts.
+
+- Core Entities:
+    - Post: post_id, content, author_id, tags, timestamp
+
+- API:
+    - GET /searchPosts: Search posts based on criteria.
+
+
+- High-Level Diagram:
+    - Search Indexing Service:
+        - Pre-processes posts and builds indexes for quick search (Elasticsearch, Solr).
+    - Search Query Service:
+        - Handles search queries and retrieves results.
+    - Relevance Ranking Service:
+        - Ranks search results based on relevance.
+    - Database:
+        - Stores raw post data and user metadata.
+    - Logging and Analytics:
+        - Logs query patterns for optimization.
+
+
+- Deep Dive:
+    - Search: Use Elasticsearch or similar tools for indexing and querying.
+    - Ranking: Implement relevance scoring for results.

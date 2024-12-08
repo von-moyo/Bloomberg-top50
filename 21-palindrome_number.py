@@ -1,3 +1,4 @@
+# Palindrome number
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         # Convert the integer to a string
@@ -32,12 +33,17 @@ class Solution:
         original = x
         reversed_half = 0
         
-        while x > reversed_half:
-            reversed_half = reversed_half * 10 + x % 10
-            x //= 10
+        while original > reversed_half:
+            reversed_half = reversed_half * 10 + original % 10
+            original //= 10
         
         # If the number is odd, we can remove the middle digit
-        return x == reversed_half or x == reversed_half // 10
+        return original == reversed_half or original == reversed_half // 10
     
+# The main computational work occurs in the while loop, which reduces the
+#  number of digits in original by one on each iteration. For an
+#  integer x with d digits, the loop runs approximately 
+# d/2 times because it processes half of the digits. Since 
+# d is proportional to log10(x), the time complexity is:O(log 10 (x))
 
 # Space Complexity = O(1)

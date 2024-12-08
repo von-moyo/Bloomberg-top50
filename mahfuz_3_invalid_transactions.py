@@ -1,3 +1,4 @@
+# Invalid transaction
 from collections import defaultdict
 
 def invalidTransactions(transactions):

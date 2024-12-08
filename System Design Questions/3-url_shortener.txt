@@ -1,0 +1,57 @@
+URL shortener
+
+- Requirements:
+    - Functional Requirements:
+        - Allow users to create shortened URLs from long URLs.
+        - Redirect users to the original URL when the shortened URL is accessed.
+        - Support optional features like link expiration and custom aliases.
+
+    - Non-Functional Requirements:
+        - Scalability: Handle millions of URL shortening and redirection requests.
+        - Low Latency: Ensure near-instantaneous redirection.
+        - Reliability: Prevent loss of URLs even in case of system failures.
+
+- Core Entities:
+    - URL:
+        - short_url (e.g., short.ly/abc123)
+        - original_url (e.g., https://www.example.com/some-long-path)
+        - expiration_date (optional)
+        - created_at, hits_count (optional metadata)
+    - User (if authentication is needed):
+        - user_id, email, shortened_urls.
+
+- API:
+    - POST /shorten: Create a shortened URL.
+        - Request: { "original_url": "https://example.com", "custom_alias": "myalias" }
+        - Response: { "short_url": "short.ly/myalias" }
+    - GET /:short_url: Redirect to the original URL.
+        - Example: Accessing short.ly/abc123 redirects to https://example.com.
+    - GET /stats/:short_url (optional): Fetch statistics for a shortened URL.
+        - Response: { "original_url": "https://example.com", "hits": 1000 }
+
+
+- High-Level Diagram:
+    - API Layer: Handles requests for URL creation and redirection.
+    - Database: Stores the mapping between short URLs and original URLs, along with metadata.
+    - Cache: Speeds up redirection by caching frequently accessed URLs (e.g., Redis).
+    - Analytics: Tracks usage metrics like hits and referrer data.
+
+
+- Deep Dive:
+    - Short URL Generation:
+        - Hashing: Generate a hash from the original URL using algorithms like MD5 or SHA-256 and encode it using Base62.
+        - Collision Handling: Check for existing mappings in the database and regenerate the hash if a collision occurs.
+        - Custom Aliases: Allow users to specify a custom alias if needed.
+    - Redirection:
+        - Lookup the short URL in the database.
+        - If found, redirect to the original URL.
+        - Use a caching layer (e.g., Redis) for frequently accessed URLs to reduce database reads.
+    - Storage:
+        - Use a NoSQL database like DynamoDB or a relational database like PostgreSQL for URL mappings.
+        - Store metadata for analytics purposes (e.g., created_at, hits_count).
+    - Scalability:
+        - Partition database tables by the short URL or user ID for horizontal scaling.
+        - Deploy the system behind a load balancer (e.g., AWS ALB).
+    - Security:
+        - Prevent abuse by rate-limiting requests.
+        - Validate input URLs to avoid phishing or malicious links.

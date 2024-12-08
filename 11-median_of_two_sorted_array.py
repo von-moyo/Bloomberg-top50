@@ -5,7 +5,7 @@ To achieve O(log (m + n)) time complexity, we use a binary search approach on th
 Time Complexity: O(log(min(m, n))), where m and n are the lengths of the two arrays.
 Space Complexity: O(1), as we use a constant amount of extra space.
 """
-
+# median of two sorted array
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
         # Ensure nums1 is the smaller array to optimize binary search

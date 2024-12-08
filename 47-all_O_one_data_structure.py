@@ -1,3 +1,5 @@
+# all O one data structure
+
 class Node:
     def __init__(self, count):
         self.count = count

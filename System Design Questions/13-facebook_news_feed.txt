@@ -1,0 +1,35 @@
+Facebook News Feed
+
+- Requirements:
+    - Functional Requirements:
+        - Display posts from friends and pages.
+        - Personalize feed order based on relevance.
+
+    - Non-Functional Requirements:
+        - High availability.
+        - Low latency for feed updates.
+
+- Core Entities:
+    - Post: post_id, content, author_id.
+    - UserFeed: A personalized collection of posts for each user.
+
+- API:
+    - GET /newsFeed/:user_id: Fetch the personalized feed.
+
+
+- High-Level Diagram:
+    - Feed Aggregator Service:
+        - Aggregates posts from friends, pages, and groups.
+    - Ranking Service:
+        - Personalizes feed order using machine learning.
+    - Notification Service:
+        - Sends updates for new posts.
+    - Caching Layer:
+        - Stores frequently accessed feeds for quick retrieval.
+    - Database:
+        - Stores posts, likes, and comments.
+
+
+- Deep Dive:
+    - Personalization: Use machine learning to rank posts.
+    - Caching: Cache feed for frequently active users.

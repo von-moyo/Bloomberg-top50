@@ -1,0 +1,31 @@
+Interprocess Communication:
+Se
+
+- Requirements:
+    - Functional Requirements:
+        - Process data from external Service
+        - Pass stock info to the dependent processes
+    - Non-Functional Requirements:
+        - Low Latency
+        - Availability/Reliability
+- Core Entities:
+    - 
+
+- API:
+    - processData(stockData: Object): void
+        stockData: {
+            'GOOGL'
+            stock_tick: string,
+            'NYSE'
+            xchange: string
+        }
+    - sendData(process_id: string, stockData:Object): bool
+    
+- High Level Design Diagram:
+    - Dependent Process Service
+    - Proxy Process
+    - External Service
+
+- Deep Dives:
+    - What if the process fails?
+    - Making system calls and not network calls

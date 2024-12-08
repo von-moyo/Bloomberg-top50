@@ -1,0 +1,35 @@
+Youtube
+
+- Requirements:
+    - Functional Requirements:
+        - Allow users to upload, view, and share videos.
+        - Recommend videos based on user preferences.
+        - Track likes, dislikes, and comments.
+    - Non-Functional Requirements:
+        - Scalability: Handle billions of video uploads and views.
+        - Latency: Ensure smooth video playback.
+        - Availability: Always accessible.
+
+- Core Entities:
+    - User: user_id, preferences.
+    - Video: video_id, title, url, views, likes.
+    - Comment: comment_id, video_id, user_id, content
+
+- API:
+    - POST /upload: Upload a video.
+        - Request: { "user_id": "123", "title": "My Video", "file": "..." }
+    - GET /video/{id}: Fetch video details.
+        - Response: { "title": "My Video", "views": 1000, "likes": 200 }
+
+
+- High-Level Diagram:
+    - Storage Service: Stores and streams video files.
+    - Recommendation Engine: Suggests videos based on preferences.
+    - Analytics: Tracks video interactions.
+
+
+
+- Deep Dive:
+    - Video Processing: Use a transcoding pipeline to generate multiple resolutions.
+    - Streaming: Leverage a CDN for efficient delivery.
+    - Recommendation: Train models on user interaction data.

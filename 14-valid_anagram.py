@@ -1,3 +1,5 @@
+# valid anagram
+
 def is_anagram(s: str, t: str) -> bool:
     # Edge case: if the lengths differ, they can't be anagrams
     if len(s) != len(t):

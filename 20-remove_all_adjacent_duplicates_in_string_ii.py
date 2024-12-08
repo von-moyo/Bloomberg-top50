@@ -1,3 +1,4 @@
+# remove all adjacent duplicates in string 
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
         stack = []  # Stack to store pairs (character, frequency)
